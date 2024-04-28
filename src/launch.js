@@ -1,7 +1,5 @@
-// Объявляем переменную 'vers' и устанавливаем её начальное значение
 let vers = "ja12303";
 
-// Функция для изменения значения 'vers' и текста кнопки
 function select() {
   let selectButton = document.getElementById('select');
   if (vers === "ja12303") {
@@ -13,7 +11,6 @@ function select() {
   }
 }
 
-// Устанавливаем начальный текст кнопки при загрузке страницы
 document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('select').textContent = 'Alpha 1.2.3_03';
 });
@@ -23,5 +20,3 @@ function launch() {
   ipcRenderer.send('launch', route);
   console.log('routed');
 }
-
-// let etc если етк == альфа 12303 то выполнить испрендер лаунч четатам
