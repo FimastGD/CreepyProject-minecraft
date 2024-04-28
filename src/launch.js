@@ -10,7 +10,6 @@ function select() {
     selectButton.textContent = 'Alpha 1.2.3_03';
   }
 }
-
 document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('select').textContent = 'Alpha 1.2.3_03';
 });
