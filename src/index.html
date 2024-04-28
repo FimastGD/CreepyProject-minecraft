@@ -8,15 +8,15 @@
     <center>
     <button class="main-btn" onclick="launch()">Launch Game</button>
     </center>
-    <div class="r" style="position: absolute; top: 5px">Creepy  Project Beta 1.0.0</div>
+    <div class="r" style="position: absolute; top: 5px">Creepy  Project Beta 1.0.1</div>
     <div class="r" style="position: absolute; top: 30px">FPS: <div style="position: absolute; top: 0px; left: 50px" id="fps"></div></div>
     <div id="debug" class="r" style="position: absolute; top: 55px; width: 300px;"></div>
 
     <center>
         <br><br>
-        <div class="c">Select version:</div>
+        <div class="c">Click to select version:</div>
         <br>
-        <button class="main-btn-disabled">Alpha 1.2.3_03</button>
+        <button class="main-btn" id="select" onclick="select()"></button>
     </center>
     <center>
         <br>
@@ -74,10 +74,11 @@ body {
     .main-btn {
         text-align: center;
         display: block;
+        height: 35px;
         font-family: 'Fontm', sans-serif;
         background: #727272;
         color: rgb(247, 247, 247);
-        width: 30%;
+        width: 30%; /*30percent*/
         padding: .5rem 0;
         margin-bottom: .75rem;
         text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
