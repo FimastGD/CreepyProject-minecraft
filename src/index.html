@@ -1,0 +1,127 @@
+<head>
+
+</head>
+
+<body>
+    <img src='./logo.png' width="700px">
+    <br><br>
+    <center>
+    <button class="main-btn" onclick="launch()">Launch Game</button>
+    </center>
+    <div class="r" style="position: absolute; top: 5px">Creepy  Project Beta 1.0.0</div>
+    <div class="r" style="position: absolute; top: 30px">FPS: <div style="position: absolute; top: 0px; left: 50px" id="fps"></div></div>
+    <div id="debug" class="r" style="position: absolute; top: 55px; width: 300px;"></div>
+
+    <center>
+        <br><br>
+        <div class="c">Select version:</div>
+        <br>
+        <button class="main-btn-disabled">Alpha 1.2.3_03</button>
+    </center>
+    <center>
+        <br>
+        <button class="main-btn" onclick="git()">GitHub</button>
+    </center>
+    <center>
+        <br>
+        <button class="main-btn" onclick="quitgame()">Quit</button>
+    </center>
+    <div class="r" id="java" style="position: absolute; bottom: 30px; right: 5px"></div>
+    <div class="r" style="position: absolute; bottom: 8px; right: 5px">(C) Copyright by Fimast</div>
+    
+
+</body>
+
+
+
+<style>
+    @font-face {
+  font-family: 'Fontm';
+  src: url('../assets/fonts/font.ttf') format('truetype');
+}
+* {
+    user-select: none;
+}
+
+.r {
+    color: #fff;
+    font-family: 'Fontm', sans-serif;
+    text-align: left;
+    word-spacing: 5px;
+}
+.c {
+    color: #fff;
+    font-family: 'Fontm', sans-serif;
+    text-align: center;
+    word-spacing: 5px;
+}
+
+.l{
+    color: #fff;
+    font-family: 'Fontm', sans-serif;
+    text-align: right;
+    word-spacing: 5px;
+}
+
+
+body {
+    background-image: url('./dirt.png');
+    background-size: cover;
+    text-align: center;
+    display: block;
+}
+
+    .main-btn {
+        text-align: center;
+        display: block;
+        font-family: 'Fontm', sans-serif;
+        background: #727272;
+        color: rgb(247, 247, 247);
+        width: 30%;
+        padding: .5rem 0;
+        margin-bottom: .75rem;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+        font-size: 1rem;
+        letter-spacing: .025em;
+        border: 2px solid rgba(0, 0, 0, 1);
+        box-shadow: inset 3px 3px 0 rgba(255, 255, 255, 0.5), inset -3px -3px 0 rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+
+    .main-btn-disabled {
+        text-align: center;
+        display: block;
+        font-family: 'Fontm', sans-serif;
+        background: #292929;
+        color: rgb(160, 158, 158);
+        width: 30%;
+        padding: .5rem 0;
+        margin-bottom: .75rem;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+        font-size: 1rem;
+        letter-spacing: .025em;
+        border: 2px solid rgba(0, 0, 0, 1);
+        box-shadow: inset 3px 3px 0 rgba(107, 107, 107, 0.5), inset -3px -3px 0 rgba(0, 0, 0, 0.5);
+    }
+    .main-btn:hover {
+        background: rgba(115, 107, 221, 1);
+    }
+    .main-btn:focus {
+        color: rgb(246, 246, 44);
+        outline: none;
+    }
+</style>
+
+<script>
+const { ipcRenderer } = require('electron');
+const exec = require('child_process').exec;
+const osu = require('node-os-utils');
+const mem = osu.mem;
+</script>
+
+<script src="./fps.js"></script>
+<script src="./quit.js"></script>
+<script src="./debug.js"></script>
+<script src="./git.js"></script>
+<script src="./launch.js"></script>
+<script src="./javachecker.js"></script>
