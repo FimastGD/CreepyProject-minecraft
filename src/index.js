@@ -1,6 +1,7 @@
-const { app, BrowserWindow, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, ipcMain, shell, dialog } = require('electron');
 const path = require('path');
 const osu = require('node-os-utils');
+require('events').EventEmitter.defaultMaxListeners = 20;
 
 
 
@@ -30,11 +31,28 @@ const createWindow = () => {
         app.quit();
       });
       ipcMain.on('launch', (event, route) => {
-        console.log(route)
-        shell.openPath(route);
-      });
-    
+        //console.log(route);
+        if (route == "jhex01" || route == "jhex02" || route == "jhex03") {
+            const options = {
+              type: 'warning',
+              buttons: ['OK', 'Cancel'],
+              defaultId: 0,
+              title: 'Alert of a possible virus',
+              message: 'This version has not been fully checked and may contain dangerous software. YOU DO EVERYTHING AT YOUR OWN RISK! Do you really want to continue?'
+            };
+        
+            dialog.showMessageBox(win, options).then(result => {
+              if (result.response === 0) {
+                shell.openPath(`C:\\creepyproject\\java\\${route}\\preload.bat`);
+              }
+            });
+      } else {
+        shell.openPath(`C:\\creepyproject\\java\\${route}\\preload.bat`);
+      }
+      
+    });
 
+    
 }
 
 app.whenReady().then(() => createWindow());

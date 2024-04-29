@@ -8,7 +8,7 @@
     <center>
     <button class="main-btn" onclick="launch()">Launch Game</button>
     </center>
-    <div class="r" style="position: absolute; top: 5px">Creepy  Project Beta 1.0.1</div>
+    <div class="r" style="position: absolute; top: 5px">Creepy  Project v1.0</div>
     <div class="r" style="position: absolute; top: 30px">FPS: <div style="position: absolute; top: 0px; left: 50px" id="fps"></div></div>
     <div id="debug" class="r" style="position: absolute; top: 55px; width: 300px;"></div>
 
@@ -86,7 +86,7 @@ body {
         letter-spacing: .025em;
         border: 2px solid rgba(0, 0, 0, 1);
         box-shadow: inset 3px 3px 0 rgba(255, 255, 255, 0.5), inset -3px -3px 0 rgba(0, 0, 0, 0.5);
-        cursor: pointer;
+        /*cursor: pointer;*/
     }
 
     .main-btn-disabled {
@@ -106,9 +106,9 @@ body {
     }
     .main-btn:hover {
         background: rgba(115, 107, 221, 1);
-    }
-    .main-btn:focus {
         color: rgb(246, 246, 44);
+    }
+    .main-btn:focus {  
         outline: none;
     }
 </style>
@@ -122,7 +122,7 @@ const mem = osu.mem;
 
 <script src="./fps.js"></script>
 <script src="./quit.js"></script>
-<script src="./debug.js"></script>
+<!--<script src="./debug.js"></script>-->
 <script src="./git.js"></script>
 <script src="./launch.js"></script>
 <script src="./javachecker.js"></script>
