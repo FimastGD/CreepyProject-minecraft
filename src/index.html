@@ -8,7 +8,7 @@
     <center>
     <button class="main-btn" onclick="launch()">Launch Game</button>
     </center>
-    <div class="r" style="position: absolute; top: 5px">Creepy  Project v1.0</div>
+    <div class="r" style="position: absolute; top: 5px">Creepy  Project v1.0.1</div>
     <div class="r" style="position: absolute; top: 30px">FPS: <div style="position: absolute; top: 0px; left: 50px" id="fps"></div></div>
     <div id="debug" class="r" style="position: absolute; top: 55px; width: 300px;"></div>
 
@@ -20,7 +20,8 @@
     </center>
     <center>
         <br>
-        <button class="main-btn" onclick="git()">GitHub</button>
+        <button class="main-btn-small" style="position: relative; left: -77.4px" onclick="git()">GitHub</button>
+        <button class="main-btn-small" id="git" style="position: absolute; left: 500px; top: 360px;" onclick="upd()">Update</button>
     </center>
     <center>
         <br>
@@ -89,6 +90,24 @@ body {
         /*cursor: pointer;*/
     }
 
+    .main-btn-small {
+        text-align: center;
+        display: block;
+        height: 35px;
+        font-family: 'Fontm', sans-serif;
+        background: #727272;
+        color: rgb(247, 247, 247);
+        width: 14%; /*30percent*/
+        padding: .5rem 0;
+        margin-bottom: .75rem;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+        font-size: 1rem;
+        letter-spacing: .025em;
+        border: 2px solid rgba(0, 0, 0, 1);
+        box-shadow: inset 3px 3px 0 rgba(255, 255, 255, 0.5), inset -3px -3px 0 rgba(0, 0, 0, 0.5);
+        /*cursor: pointer;*/
+    }
+
     .main-btn-disabled {
         text-align: center;
         display: block;
@@ -104,11 +123,35 @@ body {
         border: 2px solid rgba(0, 0, 0, 1);
         box-shadow: inset 3px 3px 0 rgba(107, 107, 107, 0.5), inset -3px -3px 0 rgba(0, 0, 0, 0.5);
     }
+
+    .main-btn-small-disabled {
+        text-align: center;
+        display: block;
+        font-family: 'Fontm', sans-serif;
+        background: #292929;
+        color: rgb(160, 158, 158);
+        width: 14%;
+        padding: .5rem 0;
+        margin-bottom: .75rem;
+        text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+        font-size: 1rem;
+        letter-spacing: .025em;
+        border: 2px solid rgba(0, 0, 0, 1);
+        box-shadow: inset 3px 3px 0 rgba(107, 107, 107, 0.5), inset -3px -3px 0 rgba(0, 0, 0, 0.5);
+    }
     .main-btn:hover {
         background: rgba(115, 107, 221, 1);
         color: rgb(246, 246, 44);
     }
     .main-btn:focus {  
+        outline: none;
+    }
+
+    .main-btn-small:hover {
+        background: rgba(115, 107, 221, 1);
+        color: rgb(246, 246, 44);
+    }
+    .main-btn-small:focus {  
         outline: none;
     }
 </style>
@@ -118,6 +161,7 @@ const { ipcRenderer } = require('electron');
 const exec = require('child_process').exec;
 const osu = require('node-os-utils');
 const mem = osu.mem;
+s
 </script>
 
 <script src="./fps.js"></script>
@@ -126,3 +170,20 @@ const mem = osu.mem;
 <script src="./git.js"></script>
 <script src="./launch.js"></script>
 <script src="./javachecker.js"></script>
+<script src="./latestCheck.js"></script>
+
+
+
+
+<!-- ipcRenderer.send('execute-code', `
+  let isWhite = true;
+  const button = document.getElementById('git');
+  button.innerText = 'Update';
+  button.disabled = false;
+  button.className = 'main-btn-small';
+
+  setInterval(() => {
+    button.style.backgroundColor = isWhite ? '#727272' : 'orange';
+    isWhite = !isWhite;
+  }, 500);
+`); -->
