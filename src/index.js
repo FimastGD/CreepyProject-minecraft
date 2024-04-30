@@ -3,7 +3,8 @@ const path = require('path');
 const axios = require('axios');
 const osu = require('node-os-utils');
 require('events').EventEmitter.defaultMaxListeners = 20;
-
+const fs = require('fs');
+const { setMaxIdleHTTPParsers } = require('http');
 
 
 const createWindow = () => {
@@ -17,9 +18,8 @@ const createWindow = () => {
             contextIsolation: false
         }
     });
-
-    /*VERSION*/ const current = 1012;
-
+    /*VERSION*/ const current = 1022;
+    //win.webContents.openDevTools();
     win.setMenuBarVisibility(false);
     win.setTitle('Creepy Project');
     win.loadFile('src/index.html');
@@ -61,12 +61,27 @@ const createWindow = () => {
     
     const url = 'https://api.blazehost.ru/creepyproject/latest';
     let dynamic;
-    
     async function checkForUpdates() {
       try {
         const response = await axios.post(url);
-    
         if (response.data > current) {
+          ipcMain.once('execute-code', (event, code) => {
+            webContents.getAllWebContents().forEach(wc => {
+              wc.executeJavaScript(code);
+            });
+          });
+
+          ipcMain.emit('execute-code', null, `let isWhite = true;
+          const button = document.getElementById('git');
+          button.innerText = 'Update';
+          button.disabled = false;
+          button.className = 'main-btn-small';
+       
+          setInterval(() => {
+            button.style.backgroundColor = isWhite ? '#727272' : 'orange';
+            isWhite = !isWhite;
+          }, 500);`);
+          // Показать сообщение о новом обновлении
           const options = {
             type: 'info',
             buttons: ['OK'],
@@ -74,38 +89,39 @@ const createWindow = () => {
             title: 'New update!',
             message: 'New update available! Click on "Update" button for install latest release'
           };
-    
           const result = await dialog.showMessageBox(win, options);
           if (result.response === 0) {
             console.log("update!");
-            dynamic = "1"; // Установите значение dynamic здесь
+            dynamic = "1"; 
             console.log(dynamic);
+
+            
           }
+        } else {
+          console.log('no no no');
         }
       } catch (error) {
+        const options = {
+          type: 'error',
+          buttons: ['OK'],
+          defaultId: 0,
+          title: 'Error',
+          message: `node.io.postException: ${error}`
+        };
+        dialog.showMessageBox(win, options).then(result => {
+          if (result.response === 0) {
+            //shell.openPath(`C:\\creepyproject\\java\\${route}\\preload.bat`);
+          }
+        });
         console.error(`Ошибка при выполнении POST-запроса: ${error}`);
       }
     }
     
     async function main() {
-      await checkForUpdates(); // Ожидайте завершения checkForUpdates
-      console.log(dynamic); // Теперь dynamic будет иметь значение "1"
-      
+      await checkForUpdates();
+      console.log(dynamic); 
     }
-    
     main();
-
-
-      console.log(dynamic);
-      if (dynamic == "1") {
-      ipcMain.on('execute-code', (event, code) => {
-        webContents.getAllWebContents().forEach(wc => {
-        wc.executeJavaScript(code);
-        });
-      });
-    }
-      
-      
     
 }
 
