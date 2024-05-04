@@ -6,9 +6,10 @@
     <img src='./logo.png' width="700px">
     <br><br>
     <center>
-    <button class="main-btn" onclick="launch()">Launch Game</button>
+<div class="c" style="position: absolute; top: 132px; left: 50%; transform: translateX(-50%);" id="downstatus"></div><br>
+    <button class="main-btn" id="launch" onclick="launch()">Launch Game</button>
     </center>
-    <div class="r" style="position: absolute; top: 5px">Creepy  Project v1.0.2</div>
+    <div class="r" style="position: absolute; top: 5px">Creepy  Project v1.1.1</div>
     <div class="r" style="position: absolute; top: 30px">FPS: <div style="position: absolute; top: 0px; left: 50px" id="fps"></div></div>
     <div id="debug" class="r" style="position: absolute; top: 55px; width: 300px;"></div>
 
@@ -20,8 +21,8 @@
     </center>
     <center>
         <br>
-        <button class="main-btn-small" style="position: relative; left: -77.4px" onclick="git()">GitHub</button>
-        <button class="main-btn-small-disabled" disabled id="git" style="position: absolute; left: 500px; top: 360px;" onclick="upd()">Update</button>
+        <button class="main-btn-small" style="position: relative; left: -77.4px" onclick="git()">GitHub</button><!--left 500 top 360-->
+        <button class="main-btn-small-disabled" disabled id="git" style="position: relative; left: 77px; top: -47.9px;" onclick="upd()">Update</button>
     </center>
     <center>
         <br>
@@ -161,7 +162,7 @@ const { ipcRenderer } = require('electron');
 const exec = require('child_process').exec;
 const osu = require('node-os-utils');
 const mem = osu.mem;
-s
+
 </script>
 
 <script src="./fps.js"></script>
@@ -170,6 +171,7 @@ s
 <script src="./git.js"></script>
 <script src="./launch.js"></script>
 <script src="./javachecker.js"></script>
+<script src="./download.js"></script>
 <script src="./latestCheck.js"></script>
 
 
