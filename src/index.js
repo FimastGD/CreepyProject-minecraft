@@ -20,7 +20,7 @@ const createWindow = () => {
             contextIsolation: false
         }
     });
-    /*VERSION*/ const current = 1112;
+    /*VERSION*/ const current = 1122;
     //win.webContents.openDevTools();
     win.setMenuBarVisibility(false);
     win.setTitle('Creepy Project');
