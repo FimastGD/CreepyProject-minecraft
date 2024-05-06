@@ -10,4 +10,4 @@ function updateMemoryInfo() {
     document.getElementById('debug').textContent = infoString;
   });
 }
-setInterval(updateMemoryInfo, 2000);
+setInterval(updateMemoryInfo, 900);

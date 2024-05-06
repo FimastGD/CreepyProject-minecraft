@@ -79,12 +79,14 @@ let restart = 0;
                 wc.executeJavaScript(code);
               });
             });
+            let percent = (howDownload * 100) / size;
+            percent = Math.round(percent);
             let script = `launchBtn3 = document.getElementById('launch');
             downstatus3 = document.getElementById('downstatus');
             launchBtn3.innerText = 'Downloading...';
             launchBtn3.disabled = true;
             launchBtn3.className = 'main-btn-disabled';
-            downstatus3.innerHTML = '<font color="yellow">Installing minecraft version...<br>(<font color="white">${howDownload} MB <font color="yellow">/</font> ${size} MB</font>)</font>';`;
+            downstatus3.innerHTML = '<font color="yellow">Installing Minecraft version...<br>(<font color="white">${howDownload} MB <font color="yellow">/</font> ${size} MB</font><font color="yellow"> / </font><font color="white">${percent} %<font color="yellow">)</font></font></font>';`;
             ipcMain.emit('give-downloading', null, script);
 
             }
@@ -205,7 +207,26 @@ let restart = 0;
               }
             });
           } else {
-        shell.openPath(`C:\\creepyproject\\java\\${route}\\preload.bat`);
+            if (route == "j1720") {
+              const options = {
+                type: 'info',
+                buttons: ['Launch', 'Launch FIX'],
+                defaultId: 0,
+                title: 'Launch alert',
+                message: 'To launch 1.7.20, click "Launch". If you get an error, then click "Launch FIX"'
+              };
+          
+              dialog.showMessageBox(win, options).then(result => {
+                if (result.response === 0) {
+                  shell.openPath(`C:\\creepyproject\\java\\j1720\\preload.bat`);
+                } else if (result.response === 1) {
+                  shell.openPath(`C:\\creepyproject\\java\\j1720\\preloadFIX.bat`);
+                }
+              });
+            } else {
+              shell.openPath(`C:\\creepyproject\\java\\${route}\\preload.bat`);
+            }
+        
           }
         }
     } else {

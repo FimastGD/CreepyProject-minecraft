@@ -4,6 +4,8 @@ let size = 16.75;
 
 // Функция для изменения значения 'vers' и текста кнопки
 function select() {
+  var click = new Audio('../assets/sounds/CP_click01.mp3');
+  click.play();
   let selectButton = document.getElementById('select');
   if (vers === "ja12303") {
     vers = "ja12303rem";
@@ -45,6 +47,10 @@ function select() {
     vers = "ja127";
     size = 80.44;
     selectButton.textContent = 'Alpha 1.2.7';
+  } else if (vers === "ja127"){
+    vers = "j1720";
+    size = 961.19;
+    selectButton.textContent = 'Release 1.7.20';
   } else {
     vers = "ja12303";
     size = 16.75;
@@ -58,6 +64,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function launch() {
+  var click = new Audio('../assets/sounds/CP_click01.mp3');
+  click.play();
   route = vers;
   size = size;
   ipcRenderer.send('launch', route, size);
